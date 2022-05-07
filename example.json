@@ -1,0 +1,22 @@
+{
+    "olymps": [
+        {
+          "name": "олимпиада 1",
+          "date": "09.05.1945",
+          "classes": "8-10",
+          "link": "bebra.com"
+        },
+      {
+        "name": "олимпиада 2",
+        "date": "09.05.1945",
+        "classes": "10-11",
+        "link": "bebra.com"
+        },
+      {
+        "name": "олимпиада 3",
+        "date": "09.05.1945",
+        "classes": "7-9",
+        "link": "bebra.com"
+        }
+    ]
+}
