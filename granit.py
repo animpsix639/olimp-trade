@@ -16,7 +16,7 @@ def granit_login(lg, pwd):
     log_url = 'http://olimpiada.spmi.ru/login/index.php'
     stages_url = 'http://olimpiada.spmi.ru/course/view.php?id=4'
 
-    ans = {'Гранит науки': {}}
+    ans = {'Гранит науки': {'Ссылка': 'https://ogn.spmi.ru'}}
 
     logload = {
         'username': lg,

@@ -71,7 +71,7 @@ def energy_hope_login(lg, pwd):
             name = ' '.join(rs.split()[2:])
             ans2.append((time, name))
 
-    ans = {'Надежда энергетики': {'Отборочные': ans1, 'Заключительные': ans2}}
+    ans = {'Надежда энергетики': {'Ссылка': 'https://www.energy-hope.ru', 'Отборочные': ans1, 'Заключительные': ans2}}
 
     ret = json.dumps(ans)
 
