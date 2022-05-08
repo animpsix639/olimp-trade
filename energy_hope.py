@@ -1,6 +1,9 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs4
 import re
+import json
+import pprint
+
 
 def energy_hope_login(lg, pwd):
     log_url = 'https://www.energy-hope.ru/cabinet/profile.html'
@@ -49,19 +52,27 @@ def energy_hope_login(lg, pwd):
     for x in tab2_content:
         rs = x.text
         name = rs.split()[2]
-        if rs.find('завершена') != -1 and name not in t2 and name not in t1:
-            ans1.append(rs)
-
+        if name not in t2 and name not in t1:  # rs.find('завершена') != -1 если не закончилась
+            if rs.find('завершена') != -1:
+                rs = rs[:rs.find('регистрация') - 1]
+            time = ' '.join(rs.split()[:2])
+            name = ' '.join(rs.split()[2:])
+            ans1.append((time, name))
 
     tab3 = tab_bs.find_all('div', id='tabs-3')
     tab3_content = [v.find_all('h3') for v in tab3][0]
     for x in tab3_content:
         rs = x.text
         name = rs.split()[2]
-        if rs.find('завершена') != -1 and name not in t2 and name in t1:
-            ans2.append(rs)
+        if name not in t2 and name in t1:  # rs.find('завершена') != -1 если не закончилась
+            if rs.find('завершена') != -1:
+                rs = rs[:rs.find('регистрация') - 1]
+            time = ' '.join(rs.split()[:2])
+            name = ' '.join(rs.split()[2:])
+            ans2.append((time, name))
 
-    ans = {'Отборочные': ans1,
-           'Заключительные: ans2'}
+    ans = {'Надежда энергетики': {'Отборочные': ans1, 'Заключительные': ans2}}
 
-    return ans
+    ret = json.dumps(ans)
+
+    return ret
