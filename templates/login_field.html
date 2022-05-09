@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Рыбовое</title>
+    <style>
+    	.layer {
+    	position: absolute;
+	    top: 50px;
+	    left: 500px;
+	    line-height: 1px;
+	   		}
+	  	</style>
+</head>
+
+<body>
+	<div class="layer">
+	    <h2>Авторизация</h2>
+	    <h5>Мы точно не украдем ваши данные</h5>
+	    <br>
+	    <form action="" method="post" novalidate>
+	        {{ form.hidden_tag() }}
+	        <p>
+	            {{ form.olymp.label }}<br>
+	            {{ form.olymp(class="form-control") }}<br>
+	            {% for error in form.olymp.errors %}
+	        <div class="alert alert-danger" role="alert">
+	            {{ error }}
+	        </div>
+	        {% endfor %}
+	        </p>
+	        <p>
+	            {{ form.login.label }}<br>
+	            {{ form.login(class="form-control") }}<br>
+	            {% for error in form.login.errors %}
+	        <div class="alert alert-danger" role="alert">
+	            {{ error }}
+	        </div>
+	        {% endfor %}
+	        </p>
+	        <p>
+	            {{ form.password.label }}<br>
+	            {{ form.password(class="form-control", type="password") }}<br>
+	            {% for error in form.password.errors %}
+	        <div class="alert alert-danger" role="alert">
+	            {{ error }}
+	        </div>
+	        {% endfor %}
+	        </p>
+	        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+	    </form>
+	    <form method="LINK" action="/home" target="_blank">
+		    <button type="submit" class="btn btn-warning">Вернуться</button>
+		</form>
+	</div>
+</body>
+</html>
