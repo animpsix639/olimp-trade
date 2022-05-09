@@ -9,22 +9,40 @@
     </head>
 
     <body>
-    	<h2>Ближайшие олимпиады на {{ current_date }}</h2>
-    	<br>
-    	<form class="login_form" method="post">
-	    	<div id="выбор класса" class="form-group">
-	            <label for="classSelect">Выберите ваш класс обучения (рекомендуется)</label>
-	            <select class="form-control" id="classSelect" name="class">
-	            	<option>7</option>
-	            	<option>8</option>
-	            	<option>9</option>
-	            	<option>10</option>
-	            	<option>11</option>
-	            </select> <button type="submit" class="btn btn-primary">Ок</button>
-	        </div>
-	    </form>
+    	<h2>Ближайшие олимпиады на {{ current_date }}:</h2>
 	    <div id="список олимпиад">
-        	{% block olymps_list %}{% endblock %}
+        	<br>
+    		{% for olymp in olymps_upcoming %}
+      		<div>
+        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+    			<path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+    			<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+        		{{ olymp["date"] }} <b>{{ olymp["name"] }}</b> {{ olymp["stage"] }}<br>
+        		{{ olymp["desc"] }} {{ olymp["place"] }}
+    			<form method="LINK" action={{ olymp["link"] }} target="_blank">
+    				<button type="submit" class="btn btn-success">Перейти</button>
+    			</form><br>
+    		</div>
+    		<br>
+    		{% endfor %}
+        </div>
+        <br>
+        <h2>Прошедшие олимпиады:</h2>
+        <div id="список олимпиад">
+        	<br>
+    		{% for olymp in olymps_passed %}
+      		<div>
+        		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+    			<path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+    			<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+        		{{ olymp["date"] }} <b>{{ olymp["name"] }}</b> {{ olymp["stage"] }}<br>
+        		{{ olymp["desc"] }} {{ olymp["place"] }}
+    			<form method="LINK" action={{ olymp["link"] }} target="_blank">
+    				<button type="submit" class="btn btn-success">Перейти</button>
+    			</form><br>
+    		</div>
+    		<br>
+    		{% endfor %}
         </div>
     </body>
 
