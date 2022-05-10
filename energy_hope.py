@@ -1,9 +1,6 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs4
 import re
-import json
-import pprint
-
 
 def energy_hope_login(lg, pwd):
     log_url = 'https://www.energy-hope.ru/cabinet/profile.html'
@@ -22,6 +19,7 @@ def energy_hope_login(lg, pwd):
     t1 = []
     t2 = []
 
+    ans = {'olymps': {'Надежда энергетики': {'Ссылка': 'https://www.energy-hope.ru'}}}
     ans1 = []
     ans2 = []
 
@@ -73,6 +71,6 @@ def energy_hope_login(lg, pwd):
 
     ans = {'Надежда энергетики': {'Ссылка': 'https://www.energy-hope.ru', 'Отборочные': ans1, 'Заключительные': ans2}}
 
-    ret = json.dumps(ans)
+    return ans
 
-    return ret
+

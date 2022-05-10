@@ -1,7 +1,5 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs4
-import json
-
 
 def tiim_login(lg, pwd):
     log_url = 'https://тиим.рф/personal/'
@@ -72,6 +70,5 @@ def tiim_login(lg, pwd):
     ans['ТИИМ']['Отборочные'] = ans1
     ans['ТИИМ']['Заключительные'] = ans2
 
-    res = json.dumps(ans)
+    return ans
 
-    return res

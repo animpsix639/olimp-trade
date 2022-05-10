@@ -1,5 +1,4 @@
 import json
-import pprint
 import requests as rq
 from bs4 import BeautifulSoup as bs4
 import re
@@ -49,3 +48,4 @@ def granit_login(lg, pwd):
     ret = json.dumps(ans)
 
     return ret
+

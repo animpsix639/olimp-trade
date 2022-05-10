@@ -2,6 +2,9 @@ from flask import Flask, render_template, redirect, request
 import json
 import datetime
 from funcs import unpack, pu, LoginForm
+from energy_hope import energy_hope_login
+from granit import granit_login
+from tiim import tiim_login
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'bebra'
@@ -13,6 +16,21 @@ user_login = False
 @app.route('/',  methods=['POST', 'GET'])
 @app.route('/home',  methods=['POST', 'GET'])
 def based():
+    with open('olymp_logins.json', 'rt', encoding='utf8') as Vaas_Montenegro:
+        f = Vaas_Montenegro.read()
+        ll = json.loads(f)
+    l1 = ll['Надежда энергетики']
+    l2 = ll['ТИИМ']
+    l3 = ll['Гранит науки']
+
+    ans = {'olymps': {}}
+    ans['olymps'].update(energy_hope_login(l1[0], l1[1]))
+    ans['olymps'].update(energy_hope_login(l2[0], l2[1]))
+    ans['olymps'].update(energy_hope_login(l3[0], l3[1]))
+
+    with open('example.json', 'w') as fff:
+        json.dump(ans, fff)
+
     if user_login:
         with open("example.json", "rt", encoding="utf8") as Jason_Brody:
             f = Jason_Brody.read()
