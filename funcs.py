@@ -39,7 +39,7 @@ def unpack(olymp_list):
                     "stage": "Заключительный этап",
                     "date": final[0],
                     "desc": final[1],
-                    "place": final[2],
+                    "place": 'Очно',
                     "reg": False,
                     "link": olymp_list['olymps'][olymp]['Ссылка']})
                 n += 1

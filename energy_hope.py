@@ -53,7 +53,7 @@ def energy_hope_login(lg, pwd):
         if name not in t2 and name not in t1:  # rs.find('завершена') != -1 если не закончилась
             if rs.find('завершена') != -1:
                 rs = rs[:rs.find('регистрация') - 1]
-            time = ' '.join(rs.split()[:2])
+            time = ' '.join(rs.split()[:1])
             name = ' '.join(rs.split()[2:])
             ans1.append((time, name))
 
@@ -65,12 +65,12 @@ def energy_hope_login(lg, pwd):
         if name not in t2 and name in t1:  # rs.find('завершена') != -1 если не закончилась
             if rs.find('завершена') != -1:
                 rs = rs[:rs.find('регистрация') - 1]
-            time = ' '.join(rs.split()[:2])
+            time = ' '.join(rs.split()[:1])
             name = ' '.join(rs.split()[2:])
             ans2.append((time, name))
-
     ans = {'Надежда энергетики': {'Ссылка': 'https://www.energy-hope.ru', 'Отборочные': ans1, 'Заключительные': ans2}}
 
     return ans
 
 
+energy_hope_login('TrubachevAI', '2Oz_ckk7')
