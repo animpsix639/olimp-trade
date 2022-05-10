@@ -1,5 +1,7 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs4
+import json
+
 
 def tiim_login(lg, pwd):
     log_url = 'https://тиим.рф/personal/'
@@ -56,7 +58,7 @@ def tiim_login(lg, pwd):
                 for word in range(len(date)):
                     if date[word] in months:
                         date[word] = months[date[word]]
-                ans1.append((temp[:temp.index('—')] + sub, '.'.join(map(str, date[3:]))))
+                ans1.append(('.'.join(map(str, date[3:])), temp[:temp.index('—')] + sub, ))
 
             elif 'Заключительный' in temp:  # and check:
                 sub = 'по математике' if not ans2 else 'по информатике'
@@ -65,10 +67,11 @@ def tiim_login(lg, pwd):
                 for word in range(len(date)):
                     if date[word] in months:
                         date[word] = months[date[word]]
-                ans2.append((temp[:temp.index('—')] + sub, '.'.join(map(str, date))))
+                ans2.append(('.'.join(map(str, date)), temp[:temp.index('—')] + sub))
 
     ans['ТИИМ']['Отборочные'] = ans1
     ans['ТИИМ']['Заключительные'] = ans2
 
-    return ans
+    ret = json.dumps(ans)
 
+    return ret

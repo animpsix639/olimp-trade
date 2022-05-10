@@ -1,9 +1,23 @@
 [
   {
+    "olymp": "Гранит науки",
+    "login": "khleborezka@mail.ru",
+    "password": "Mother1234!",
+    "submit": true,
+    "csrf_token": "ImYxZWNmYTMwNjQ2NzQ1MWM4MzQ4OTQ0ZGIwN2VjZGY5OGY0OTVkNTQi.Ynpd5w.4Got9xom31YOAHHlF1y1QezoLG0"
+  },
+  {
     "olymp": "Надежда энергетики",
     "login": "TrubachevAI",
     "password": "2Oz_ckk7",
     "submit": true,
-    "csrf_token": "ImYxZWNmYTMwNjQ2NzQ1MWM4MzQ4OTQ0ZGIwN2VjZGY5OGY0OTVkNTQi.YnpSEQ.5ODk769WQgYTFu-juJRPwtaLjEs"
+    "csrf_token": "ImYxZWNmYTMwNjQ2NzQ1MWM4MzQ4OTQ0ZGIwN2VjZGY5OGY0OTVkNTQi.Ynpd8A.P7dU0AGZicIcKlIah2O3pye94Lw"
+  },
+  {
+    "olymp": "ТИИМ",
+    "login": "m202204316",
+    "password": "343499",
+    "submit": true,
+    "csrf_token": "ImYxZWNmYTMwNjQ2NzQ1MWM4MzQ4OTQ0ZGIwN2VjZGY5OGY0OTVkNTQi.YnpeAQ.JKOvIqfBEk1n_r32Bl6jUEnOdSg"
   }
 ]

@@ -1,6 +1,7 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs4
 import re
+import json
 
 def energy_hope_login(lg, pwd):
     log_url = 'https://www.energy-hope.ru/cabinet/profile.html'
@@ -70,7 +71,6 @@ def energy_hope_login(lg, pwd):
             ans2.append((time, name))
     ans = {'Надежда энергетики': {'Ссылка': 'https://www.energy-hope.ru', 'Отборочные': ans1, 'Заключительные': ans2}}
 
-    return ans
+    ret = json.dumps(ans)
 
-
-energy_hope_login('TrubachevAI', '2Oz_ckk7')
+    return ret

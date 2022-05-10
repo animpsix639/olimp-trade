@@ -1,8 +1,8 @@
-import json
 import requests as rq
 from bs4 import BeautifulSoup as bs4
 import re
 import pymorphy2
+import json
 
 
 def granit_login(lg, pwd):
@@ -39,7 +39,7 @@ def granit_login(lg, pwd):
         if t:
             c = r.strong.text
             if 'Старт' in c:
-                ans['Гранит науки']['Отборочные'] =  [(t.text, c)]
+                ans['Гранит науки']['Отборочные'] = [(t.text, c)]
             elif 'Заключительный' in c and any([True if (morph.parse(x)[0].inflect({'datv'}).word in c) or (
                     'Естественным' in c and 'Естественные науки' in final_subjects) else False for x in
                                                 final_subjects]):
@@ -48,4 +48,3 @@ def granit_login(lg, pwd):
     ret = json.dumps(ans)
 
     return ret
-

@@ -24,7 +24,7 @@ def based():
         ans = {'olymps': {}}
         for d in ll:
             if 'Надежда энергетики' in d['olymp']:
-                a = energy_hope_login(d['login'], d['password'])
+                a = json.loads(energy_hope_login(d['login'], d['password']))
                 ans['olymps'].update(a)
 
             if 'ТИИМ' in d['olymp']:
