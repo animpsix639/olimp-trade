@@ -25,8 +25,8 @@ def based():
 
     ans = {'olymps': {}}
     ans['olymps'].update(energy_hope_login(l1[0], l1[1]))
-    ans['olymps'].update(energy_hope_login(l2[0], l2[1]))
-    ans['olymps'].update(energy_hope_login(l3[0], l3[1]))
+    ans['olymps'].update(tiim_login(l2[0], l2[1]))
+    ans['olymps'].update(granit_login(l3[0], l3[1]))
 
     with open('example.json', 'w') as fff:
         json.dump(ans, fff)
