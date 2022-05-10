@@ -15,34 +15,30 @@ class LoginForm(FlaskForm):
 def unpack(olymp_list):
     olymps = []
     n = 1
-    for olymp in olymp_list['olymps']:
+    for olymp in olymp_list:
         olymp_name = olymp
+        link = olymp["ссылка"]
         quals, finals = [], []
-        if 'Отборочные' in olymp_list['olymps'][olymp]:
-            for qual in olymp_list['olymps'][olymp]['Отборочные']:
-                print(qual)
-                quals.append({
-                    "id": n,
-                    "name": olymp_name,
-                    "stage": "Отборочный этап",
-                    "date": qual[0],
-                    "desc": qual[1],
-                    "place": "Онлайн",
-                    "reg": False,
-                    "link": olymp_list['olymps'][olymp]['Ссылка']})
-                n += 1
-        if 'Заключительные' in olymp_list['olymps'][olymp]:
-            for final in olymp_list['olymps'][olymp]["Заключительные"]:
-                finals.append({
-                    "id": n,
-                    "name": olymp_name,
-                    "stage": "Заключительный этап",
-                    "date": final[0],
-                    "desc": final[1],
-                    "place": 'Очно',
-                    "reg": False,
-                    "link": olymp_list['olymps'][olymp]['Ссылка']})
-                n += 1
+        for qual in olymp_list[olymp]["Отборочные"]:
+            quals.append({
+                "id": n,
+                "name": olymp_name,
+                "stage": "Отборочный этап",
+                "date": qual[0],
+                "desc": qual[1],
+                "place": qual[2],
+                "link": link})
+            n += 1
+        for final in olymp_list[olymp]["Заключительные"]:
+            finals.append({
+                "id": n,
+                "name": olymp_name,
+                "stage": "Заключительный этап",
+                "date": final[0],
+                "desc": final[1],
+                "place": final[2],
+                "link": link})
+            n += 1
         olymps.extend(quals)
         olymps.extend(finals)
 
