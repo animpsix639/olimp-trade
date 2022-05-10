@@ -39,11 +39,11 @@ def granit_login(lg, pwd):
         if t:
             c = r.strong.text
             if 'Старт' in c:
-                ans['Гранит науки']['Отборочные'] = (t.text, c)
+                ans['Гранит науки']['Отборочные'] =  [(t.text, c)]
             elif 'Заключительный' in c and any([True if (morph.parse(x)[0].inflect({'datv'}).word in c) or (
                     'Естественным' in c and 'Естественные науки' in final_subjects) else False for x in
                                                 final_subjects]):
-                ans['Гранит науки']['Заключительные'] = (t.text, c)
+                ans['Гранит науки']['Заключительные'] = [(t.text, c)]
 
     ret = json.dumps(ans)
 

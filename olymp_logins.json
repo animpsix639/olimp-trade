@@ -1,4 +1,9 @@
-[{
-  
-}
+[
+  {
+    "olymp": "Гранит науки",
+    "login": "khleborezka@mail.ru",
+    "password": "Mother1234!",
+    "submit": true,
+    "csrf_token": "ImYxZWNmYTMwNjQ2NzQ1MWM4MzQ4OTQ0ZGIwN2VjZGY5OGY0OTVkNTQi.YnpPLg.folTju_YGAwbhQdAP9L8bsbjq-U"
+  }
 ]

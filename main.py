@@ -21,17 +21,21 @@ def based():
         with open('olymp_logins.json', 'rt', encoding='utf8') as Vaas_Montenegro:
             f = Vaas_Montenegro.read()
             ll = json.loads(f)
-        l1 = ll['Надежда энергетики']
-        l2 = ll['ТИИМ']
-        l3 = ll['Гранит науки']
-
         ans = {'olymps': {}}
-        ans['olymps'].update(energy_hope_login(l1[0], l1[1]))
-        ans['olymps'].update(tiim_login(l2[0], l2[1]))
-        ans['olymps'].update(granit_login(l3[0], l3[1]))
+        for d in ll:
+            if 'Надежда энергетики' in d['olymp']:
+                a = energy_hope_login(d['login'], d['password'])
+                ans['olymps'].update(a)
 
-    with open('example.json', 'w') as fff:
-        json.dump(ans, fff)
+            if 'ТИИМ' in d['olymp']:
+                a = json.loads(tiim_login(d['login'], d['password']))
+                ans['olymps'].update(a)
+
+            if 'Гранит науки' in d['olymp']:
+                a = json.loads(granit_login(d['login'], d['password']))
+                ans['olymps'].update(a)
+        with open('example.json', 'w') as fff:
+            json.dump(ans, fff)
 
     if user_login:
         with open("example.json", "rt", encoding="utf8") as Jason_Brody:

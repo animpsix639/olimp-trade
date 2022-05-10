@@ -15,35 +15,39 @@ class LoginForm(FlaskForm):
 def unpack(olymp_list):
     olymps = []
     n = 1
-    for olymp in olymp_list:
+    for olymp in olymp_list['olymps']:
         olymp_name = olymp
         quals, finals = [], []
-        for qual in olymp_list[olymp]["Отборочные"]:
-            quals.append({
-                "id": n,
-                "name": olymp_name,
-                "stage": "Отборочный этап",
-                "date": qual[0],
-                "desc": qual[1],
-                "place": "Онлайн",
-                "reg": False,
-                "link": qual[2]})
-            n += 1
-        for final in olymp_list[olymp]["Заключительные"]:
-            finals.append({
-                "id": n,
-                "name": olymp_name,
-                "stage": "Заключительный этап",
-                "date": final[0],
-                "desc": final[1],
-                "place": final[2],
-                "reg": False,
-                "link": final[3]})
-            n += 1
+        if 'Отборочные' in olymp_list['olymps'][olymp]:
+            for qual in olymp_list['olymps'][olymp]['Отборочные']:
+                print(qual)
+                quals.append({
+                    "id": n,
+                    "name": olymp_name,
+                    "stage": "Отборочный этап",
+                    "date": qual[0],
+                    "desc": qual[1],
+                    "place": "Онлайн",
+                    "reg": False,
+                    "link": olymp_list['olymps'][olymp]['Ссылка']})
+                n += 1
+        if 'Заключительные' in olymp_list['olymps'][olymp]:
+            for final in olymp_list['olymps'][olymp]["Заключительные"]:
+                finals.append({
+                    "id": n,
+                    "name": olymp_name,
+                    "stage": "Заключительный этап",
+                    "date": final[0],
+                    "desc": final[1],
+                    "place": final[2],
+                    "reg": False,
+                    "link": olymp_list['olymps'][olymp]['Ссылка']})
+                n += 1
         olymps.extend(quals)
         olymps.extend(finals)
 
     for a in range(len(olymps) - 1):
+        print(olymps)
         for el in range(len(olymps) - a - 1):
             d1, m1, y1 = map(int, olymps[el]["date"].split('.'))
             d2, m2, y2 = map(int, olymps[el + 1]["date"].split('.'))
