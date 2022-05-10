@@ -5,6 +5,7 @@ from funcs import unpack, pu, LoginForm
 from energy_hope import energy_hope_login
 from granit import granit_login
 from tiim import tiim_login
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'bebra'
@@ -16,17 +17,18 @@ user_login = False
 @app.route('/',  methods=['POST', 'GET'])
 @app.route('/home',  methods=['POST', 'GET'])
 def based():
-    with open('olymp_logins.json', 'rt', encoding='utf8') as Vaas_Montenegro:
-        f = Vaas_Montenegro.read()
-        ll = json.loads(f)
-    l1 = ll['Надежда энергетики']
-    l2 = ll['ТИИМ']
-    l3 = ll['Гранит науки']
+    if os.stat('olymp_logins.json').st_size != 0:
+        with open('olymp_logins.json', 'rt', encoding='utf8') as Vaas_Montenegro:
+            f = Vaas_Montenegro.read()
+            ll = json.loads(f)
+        l1 = ll['Надежда энергетики']
+        l2 = ll['ТИИМ']
+        l3 = ll['Гранит науки']
 
-    ans = {'olymps': {}}
-    ans['olymps'].update(energy_hope_login(l1[0], l1[1]))
-    ans['olymps'].update(tiim_login(l2[0], l2[1]))
-    ans['olymps'].update(granit_login(l3[0], l3[1]))
+        ans = {'olymps': {}}
+        ans['olymps'].update(energy_hope_login(l1[0], l1[1]))
+        ans['olymps'].update(tiim_login(l2[0], l2[1]))
+        ans['olymps'].update(granit_login(l3[0], l3[1]))
 
     with open('example.json', 'w') as fff:
         json.dump(ans, fff)
