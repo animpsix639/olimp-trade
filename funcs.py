@@ -43,6 +43,7 @@ def unpack(olymp_list):
         olymps.extend(finals)
 
     for a in range(len(olymps) - 1):
+        print(olymps)
         for el in range(len(olymps) - a - 1):
             d1, m1, y1 = map(int, olymps[el]["date"].split('.'))
             d2, m2, y2 = map(int, olymps[el + 1]["date"].split('.'))
