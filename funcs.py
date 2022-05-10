@@ -1,12 +1,14 @@
 import datetime
-import json
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 
 class LoginForm(FlaskForm):
-    olymp = StringField('Название олимпиады', validators=[DataRequired()])
+    olymp = SelectField("Олимпиада", choices=[
+    	("ТИИМ", "ТИИМ"),
+    	("Надежда энергетики", "Надежда энергетики"),
+    	("Гранит науки", "Гранит науки")])
     login = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     submit = SubmitField('Сохранить данные')
@@ -15,34 +17,39 @@ class LoginForm(FlaskForm):
 def unpack(olymp_list):
     olymps = []
     n = 1
-    for olymp in olymp_list:
+    for olymp in olymp_list['olymps']:
         olymp_name = olymp
-        link = olymp["ссылка"]
         quals, finals = [], []
-        for qual in olymp_list[olymp]["Отборочные"]:
-            quals.append({
-                "id": n,
-                "name": olymp_name,
-                "stage": "Отборочный этап",
-                "date": qual[0],
-                "desc": qual[1],
-                "place": qual[2],
-                "link": link})
-            n += 1
-        for final in olymp_list[olymp]["Заключительные"]:
-            finals.append({
-                "id": n,
-                "name": olymp_name,
-                "stage": "Заключительный этап",
-                "date": final[0],
-                "desc": final[1],
-                "place": final[2],
-                "link": link})
-            n += 1
+        if 'Отборочные' in olymp_list['olymps'][olymp]:
+            for qual in olymp_list['olymps'][olymp]['Отборочные']:
+                print(qual)
+                quals.append({
+                    "id": n,
+                    "name": olymp_name,
+                    "stage": "Отборочный этап",
+                    "date": qual[0],
+                    "desc": qual[1],
+                    "place": "Онлайн",
+                    "reg": False,
+                    "link": olymp_list['olymps'][olymp]['Ссылка']})
+                n += 1
+        if 'Заключительные' in olymp_list['olymps'][olymp]:
+            for final in olymp_list['olymps'][olymp]["Заключительные"]:
+                finals.append({
+                    "id": n,
+                    "name": olymp_name,
+                    "stage": "Заключительный этап",
+                    "date": final[0],
+                    "desc": final[1],
+                    "place": 'Очно',
+                    "reg": False,
+                    "link": olymp_list['olymps'][olymp]['Ссылка']})
+                n += 1
         olymps.extend(quals)
         olymps.extend(finals)
 
     for a in range(len(olymps) - 1):
+        print(olymps)
         for el in range(len(olymps) - a - 1):
             d1, m1, y1 = map(int, olymps[el]["date"].split('.'))
             d2, m2, y2 = map(int, olymps[el + 1]["date"].split('.'))
